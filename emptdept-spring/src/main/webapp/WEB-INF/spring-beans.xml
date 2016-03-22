@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="net.antra.training.assignments" />
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<bean id="entityManager"
+		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+	<bean id="employeeDao" class="net.antra.training.assignments.dao.EmployeeDaoImpl">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+
+	<bean id="departmentDao" class="net.antra.training.assignments.dao.DepartmentDaoImpl">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+
+	<bean id="employeeService"
+		class="net.antra.training.assignments.service.EmployeeServiceImpl">
+		<property name="employeeDao" ref="employeeDao" />
+	</bean>
+
+	<bean id="departmentService"
+		class="net.antra.training.assignments.service.DepartmentServiceImpl">
+		<property name="departmentDao" ref="departmentDao" />
+		<property name="employeeService" ref="employeeService" />
+	</bean>
+
+</beans>
