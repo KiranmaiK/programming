@@ -6,28 +6,28 @@ import net.antra.training.assignments.entity.Department;
 
 public class DepartmentDaoImpl extends BaseDaoImpl implements DepartmentDao {
 
-	public DepartmentDaoImpl() throws Exception {
-		super();
-	}
+    public DepartmentDaoImpl() throws Exception {
+	super();
+    }
 
-	@Override
-	public void save(Department department) throws Exception {
-		try {
-			getEntityManager().persist(department);
-		} catch (Exception e) {
-			throw e;
-		}
+    @Override
+    public void save(Department department) throws Exception {
+	try {
+	    getEntityManager().persist(department);
+	} catch (Exception e) {
+	    throw e;
 	}
+    }
 
-	@Override
-	public List<Department> findAll() throws Exception {
-		List<Department> departments = null;
-		try {
-			departments = getEntityManager().createQuery("from Department", Department.class).getResultList();
-		} catch (Exception e) {
-			throw e;
-		}
-		return departments;
+    @Override
+    public List<Department> findAll() throws Exception {
+	List<Department> departments = null;
+	try {
+	    departments = getEntityManager().createQuery("from Department", Department.class).getResultList();
+	} catch (Exception e) {
+	    throw e;
 	}
+	return departments;
+    }
 
 }

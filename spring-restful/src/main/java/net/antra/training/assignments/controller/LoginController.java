@@ -18,12 +18,12 @@ public class LoginController {
 	model.addAttribute("loginForm", userForm);
 	return "login";
     }
-    
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model) {
 	return "main";
     }
-    
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public String authenticate(@ModelAttribute("loginForm") UserForm userForm, ModelMap model) {
 	if (userForm != null) {

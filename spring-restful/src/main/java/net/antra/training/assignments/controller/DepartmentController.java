@@ -19,58 +19,58 @@ import net.antra.training.assignments.service.EmployeeService;
 @Controller
 public class DepartmentController {
 
-	DepartmentService departmentService;
+    DepartmentService departmentService;
 
-	EmployeeService employeeService;
+    EmployeeService employeeService;
 
-	public DepartmentService getDepartmentService() {
-		return departmentService;
+    public DepartmentService getDepartmentService() {
+	return departmentService;
+    }
+
+    @Autowired
+    public void setDepartmentService(DepartmentService departmentService) {
+	this.departmentService = departmentService;
+    }
+
+    public EmployeeService getEmployeeService() {
+	return employeeService;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+	this.employeeService = employeeService;
+    }
+
+    @RequestMapping(value = "/addDepartment", method = RequestMethod.GET)
+    public String addDepartment(Model model) {
+
+	try {
+	    DepartmentForm departmentForm = new DepartmentForm();
+	    model.addAttribute("departmentForm", departmentForm);
+
+	    List<Employee> employees = employeeService.getEmployees();
+	    model.addAttribute("employees", employees);
+
+	    List<Department> departments = departmentService.getDepartments();
+	    model.addAttribute("departments", departments);
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
-	@Autowired
-	public void setDepartmentService(DepartmentService departmentService) {
-		this.departmentService = departmentService;
+	return "department-add";
+    }
+
+    @RequestMapping(value = "/saveDepartment", method = RequestMethod.POST)
+    public String saveDepartment(@ModelAttribute("departmentForm") DepartmentForm departmentForm, ModelMap model) {
+
+	try {
+	    departmentService.saveDepartment(departmentForm.getDepartmentName(), departmentForm.getDepartmentEmail(),
+	            departmentForm.getEmployeeIds());
+
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-
-	public EmployeeService getEmployeeService() {
-		return employeeService;
-	}
-
-	@Autowired
-	public void setEmployeeService(EmployeeService employeeService) {
-		this.employeeService = employeeService;
-	}
-
-	@RequestMapping(value = "/addDepartment", method = RequestMethod.GET)
-	public String addDepartment(Model model) {
-
-		try {
-			DepartmentForm departmentForm = new DepartmentForm();
-			model.addAttribute("departmentForm", departmentForm);
-
-			List<Employee> employees = employeeService.getEmployees();
-			model.addAttribute("employees", employees);
-
-			List<Department> departments = departmentService.getDepartments();
-			model.addAttribute("departments", departments);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "department-add";
-	}
-
-	@RequestMapping(value = "/saveDepartment", method = RequestMethod.POST)
-	public String saveDepartment(@ModelAttribute("departmentForm") DepartmentForm departmentForm, ModelMap model) {
-
-		try {
-			departmentService.saveDepartment(departmentForm.getDepartmentName(), departmentForm.getDepartmentEmail(),
-					departmentForm.getEmployeeIds());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/addDepartment";
-	}
+	return "redirect:/addDepartment";
+    }
 
 }

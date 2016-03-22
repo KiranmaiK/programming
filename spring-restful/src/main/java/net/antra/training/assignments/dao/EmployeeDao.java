@@ -11,7 +11,7 @@ public interface EmployeeDao extends BaseDao {
     public List<Employee> findAll() throws Exception;
 
     public List<Employee> findByIds(List<Integer> employeeIds) throws Exception;
-    
+
     public Employee findById(int employeeId) throws Exception;
 
 }

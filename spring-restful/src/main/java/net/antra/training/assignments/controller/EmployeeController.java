@@ -19,51 +19,51 @@ import net.antra.training.assignments.service.EmployeeService;
 @Controller
 public class EmployeeController {
 
-	private EmployeeService employeeService;
+    private EmployeeService employeeService;
 
-	public EmployeeService getEmployeeService() {
-		return employeeService;
+    public EmployeeService getEmployeeService() {
+	return employeeService;
+    }
+
+    @Autowired
+    public void setEmployeeService(EmployeeService employeeService) {
+	this.employeeService = employeeService;
+    }
+
+    @RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+    public String addEmployee(Model model) {
+	EmployeeForm employeeForm = new EmployeeForm();
+	model.addAttribute("employeeForm", employeeForm);
+
+	try {
+	    List<Employee> employees = employeeService.getEmployees();
+	    model.addAttribute("employees", employees);
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 
-	@Autowired
-	public void setEmployeeService(EmployeeService employeeService) {
-		this.employeeService = employeeService;
+	return "employee-add";
+    }
+
+    @RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
+    public String saveEmployee(@ModelAttribute("employeeForm") EmployeeForm employeeForm, ModelMap model) {
+	try {
+	    employeeService.saveEmployee(employeeForm.getFirstName(), employeeForm.getLastName(),
+	            employeeForm.getAge());
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+	return "redirect:/addEmployee";
+    }
 
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
-	public String addEmployee(Model model) {
-		EmployeeForm employeeForm = new EmployeeForm();
-		model.addAttribute("employeeForm", employeeForm);
-
-		try {
-			List<Employee> employees = employeeService.getEmployees();
-			model.addAttribute("employees", employees);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "employee-add";
+    @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+    public @ResponseBody Employee getEmployee(@PathVariable String id) {
+	Employee employee = null;
+	try {
+	    employee = getEmployeeService().getEmployeeById(id);
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-
-	@RequestMapping(value = "/saveEmployee", method = RequestMethod.POST)
-	public String saveEmployee(@ModelAttribute("employeeForm") EmployeeForm employeeForm, ModelMap model) {
-		try {
-			employeeService.saveEmployee(employeeForm.getFirstName(), employeeForm.getLastName(),
-					employeeForm.getAge());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/addEmployee";
-	}
-
-	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
-	public @ResponseBody Employee getEmployee(@PathVariable String id) {
-		Employee employee = null;
-		try {
-			employee = getEmployeeService().getEmployeeById(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return employee;
-	}
+	return employee;
+    }
 }

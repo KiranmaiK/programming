@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="net.antra.training.assignments">	
+	<persistence-unit name="net.antra.training.assignments">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>net.antra.training.assignments.entity.Department</class>
 		<class>net.antra.training.assignments.entity.Employee</class>
