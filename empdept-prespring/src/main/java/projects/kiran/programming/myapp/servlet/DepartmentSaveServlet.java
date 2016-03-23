@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,14 +19,14 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import net.antra.training.assignments.dao.DepartmentDao;
-import net.antra.training.assignments.dao.DepartmentDaoImpl;
-import net.antra.training.assignments.entity.Department;
-import net.antra.training.assignments.entity.Employee;
-import net.antra.training.assignments.service.DepartmentService;
-import net.antra.training.assignments.service.DepartmentServiceImpl;
-import net.antra.training.assignments.service.EmployeeService;
-import net.antra.training.assignments.service.EmployeeServiceImpl;
+import projects.kiran.programming.myapp.dao.DepartmentDao;
+import projects.kiran.programming.myapp.dao.DepartmentDaoImpl;
+import projects.kiran.programming.myapp.entity.Department;
+import projects.kiran.programming.myapp.entity.Employee;
+import projects.kiran.programming.myapp.service.DepartmentService;
+import projects.kiran.programming.myapp.service.DepartmentServiceImpl;
+import projects.kiran.programming.myapp.service.EmployeeService;
+import projects.kiran.programming.myapp.service.EmployeeServiceImpl;
 
 /**
  * Servlet implementation class DepartmentServlet

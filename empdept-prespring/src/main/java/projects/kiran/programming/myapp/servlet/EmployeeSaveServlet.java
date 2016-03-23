@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.antra.training.assignments.dao.EmployeeDao;
-import net.antra.training.assignments.dao.EmployeeDaoImpl;
-import net.antra.training.assignments.entity.Employee;
-import net.antra.training.assignments.service.EmployeeService;
-import net.antra.training.assignments.service.EmployeeServiceImpl;
+import projects.kiran.programming.myapp.dao.EmployeeDao;
+import projects.kiran.programming.myapp.dao.EmployeeDaoImpl;
+import projects.kiran.programming.myapp.entity.Employee;
+import projects.kiran.programming.myapp.service.EmployeeService;
+import projects.kiran.programming.myapp.service.EmployeeServiceImpl;
 
 /**
  * Servlet implementation class EmployeeServlet

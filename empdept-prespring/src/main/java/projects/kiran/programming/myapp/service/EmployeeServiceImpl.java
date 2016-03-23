@@ -1,10 +1,10 @@
-package net.antra.training.assignments.service;
+package projects.kiran.programming.myapp.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import net.antra.training.assignments.dao.EmployeeDao;
-import net.antra.training.assignments.entity.Employee;
+import projects.kiran.programming.myapp.dao.EmployeeDao;
+import projects.kiran.programming.myapp.entity.Employee;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
