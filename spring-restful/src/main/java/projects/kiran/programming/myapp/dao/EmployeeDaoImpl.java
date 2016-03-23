@@ -1,10 +1,10 @@
-package net.antra.training.assignments.dao;
+package projects.kiran.programming.myapp.dao;
 
 import java.util.List;
 
 import javax.persistence.Query;
 
-import net.antra.training.assignments.entity.Employee;
+import projects.kiran.programming.myapp.entity.Employee;
 
 public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDao {
 

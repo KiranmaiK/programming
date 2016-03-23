@@ -1,4 +1,4 @@
-package net.antra.training.assignments.controller;
+package projects.kiran.programming.myapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import net.antra.training.assignments.form.UserForm;
+import projects.kiran.programming.myapp.form.UserForm;
 
 @Controller
 public class LoginController {

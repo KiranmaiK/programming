@@ -1,4 +1,4 @@
-package net.antra.training.assignments.controller;
+package projects.kiran.programming.myapp.controller;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import net.antra.training.assignments.entity.Department;
-import net.antra.training.assignments.entity.Employee;
-import net.antra.training.assignments.form.DepartmentForm;
-import net.antra.training.assignments.service.DepartmentService;
-import net.antra.training.assignments.service.EmployeeService;
+import projects.kiran.programming.myapp.entity.Department;
+import projects.kiran.programming.myapp.entity.Employee;
+import projects.kiran.programming.myapp.form.DepartmentForm;
+import projects.kiran.programming.myapp.service.DepartmentService;
+import projects.kiran.programming.myapp.service.EmployeeService;
 
 @Controller
 public class DepartmentController {

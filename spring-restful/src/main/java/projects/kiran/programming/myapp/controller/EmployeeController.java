@@ -1,4 +1,4 @@
-package net.antra.training.assignments.controller;
+package projects.kiran.programming.myapp.controller;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import net.antra.training.assignments.entity.Employee;
-import net.antra.training.assignments.form.EmployeeForm;
-import net.antra.training.assignments.service.EmployeeService;
+import projects.kiran.programming.myapp.entity.Employee;
+import projects.kiran.programming.myapp.form.EmployeeForm;
+import projects.kiran.programming.myapp.service.EmployeeService;
 
 @Controller
 public class EmployeeController {

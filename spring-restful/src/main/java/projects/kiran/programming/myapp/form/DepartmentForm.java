@@ -1,4 +1,4 @@
-package net.antra.training.assignments.form;
+package projects.kiran.programming.myapp.form;
 
 public class DepartmentForm {
     private String departmentName;

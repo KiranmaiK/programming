@@ -1,4 +1,4 @@
-package net.antra.training.assignments.dao;
+package projects.kiran.programming.myapp.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
