@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.antra.training.assignments.model.Employee;
+import projects.kiran.programming.myapp.model.Employee;
 
 /**
  * Servlet implementation class EmployeeServlet

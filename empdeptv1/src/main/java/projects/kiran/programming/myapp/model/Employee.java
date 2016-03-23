@@ -1,4 +1,4 @@
-package net.antra.training.assignments.model;
+package projects.kiran.programming.myapp.model;
 
 import java.io.Serializable;
 

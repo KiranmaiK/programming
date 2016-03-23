@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,14 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.antra.training.assignments.model.Department;
-import net.antra.training.assignments.model.Employee;
+import projects.kiran.programming.myapp.model.Employee;
 
 /**
- * Servlet implementation class DepartmentAddServlet
+ * Servlet implementation class EmployeeAddServlet
  */
-@WebServlet("/DepartmentAddServlet")
-public class DepartmentAddServlet extends HttpServlet {
+@WebServlet("/EmployeeAddServlet")
+public class EmployeeAddServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -36,7 +35,7 @@ public class DepartmentAddServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DepartmentAddServlet() {
+    public EmployeeAddServlet() {
 	super();
 	// TODO Auto-generated constructor stub
     }
@@ -46,6 +45,7 @@ public class DepartmentAddServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
 	Connection conn = null;
 	try {
 	    System.out.println("Register JDBC connection ");
@@ -75,36 +75,6 @@ public class DepartmentAddServlet extends HttpServlet {
 		request.setAttribute("employees", employees);
 	    }
 
-	    String selectDepartmentQuery = "select department_id, department_name, department_email from department";
-	    Statement statement2 = conn.createStatement();
-	    ResultSet resultSet2 = statement2.executeQuery(selectDepartmentQuery);
-	    if (resultSet2 != null && resultSet2.next()) {
-		List<Department> departmentEmployees = new ArrayList<Department>();
-		do {
-		    Department departmentEmployee = new Department();
-		    departmentEmployee.setDepartmentId(resultSet2.getInt("department_id"));
-		    departmentEmployee.setDepartmentName(resultSet2.getString("department_name"));
-		    departmentEmployee.setDepartmentEmail(resultSet2.getString("department_email"));
-
-		    String selectEmployeeByDepartmentQuery = "select first_name, last_name, age from employee where department_id = ?";
-		    PreparedStatement preparedStatement = conn.prepareStatement(selectEmployeeByDepartmentQuery);
-		    preparedStatement.setInt(1, departmentEmployee.getDepartmentId());
-		    ResultSet resultSet3 = preparedStatement.executeQuery();
-		    if (resultSet3 != null && resultSet3.next()) {
-			do {
-			    Employee employee = new Employee();
-			    employee.setFirstName(resultSet3.getString("first_name"));
-			    employee.setLastName(resultSet3.getString("last_name"));
-			    employee.setAge(resultSet3.getInt("age"));
-			    departmentEmployee.addEmployee(employee);
-			} while (resultSet3.next());
-		    }
-		    departmentEmployees.add(departmentEmployee);
-
-		} while (resultSet2.next());
-		request.setAttribute("departmentEmployees", departmentEmployees);
-	    }
-
 	} catch (SQLException se) {
 	    // Handle errors for JDBC
 	    se.printStackTrace();
@@ -123,7 +93,7 @@ public class DepartmentAddServlet extends HttpServlet {
 		}
 	    }
 	}
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/department-add.jsp");
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/employee-add.jsp");
 	dispatcher.include(request, response);
 
     }
@@ -133,6 +103,7 @@ public class DepartmentAddServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+	// TODO Auto-generated method stub
 	doGet(request, response);
     }
 

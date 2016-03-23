@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,19 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.antra.training.assignments.model.Employee;
+import projects.kiran.programming.myapp.model.Department;
+import projects.kiran.programming.myapp.model.Employee;
 
 /**
- * Servlet implementation class EmployeeAddServlet
+ * Servlet implementation class DepartmentServlet
  */
-@WebServlet("/EmployeeAddServlet")
-public class EmployeeAddServlet extends HttpServlet {
+@WebServlet("/DepartmentSaveServlet")
+public class DepartmentSaveServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -33,11 +35,10 @@ public class EmployeeAddServlet extends HttpServlet {
     private static final String DB_PASSWORD = "antra";
 
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see Servlet#init(ServletConfig)
      */
-    public EmployeeAddServlet() {
-	super();
-	// TODO Auto-generated constructor stub
+    public void init(ServletConfig config) throws ServletException {
+	// TODO Auto-generated method stub
     }
 
     /**
@@ -45,9 +46,22 @@ public class EmployeeAddServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+	// TODO Auto-generated method stub
+	response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+	// TODO Auto-generated method stub
 	Connection conn = null;
+	PreparedStatement preparedStatement = null;
 	try {
+	    String deptName = request.getParameter("departmentName");
+	    String deptEmail = request.getParameter("departmentEmail");
+
 	    System.out.println("Register JDBC connection ");
 
 	    // Register JDBC connection
@@ -57,22 +71,21 @@ public class EmployeeAddServlet extends HttpServlet {
 	    System.out.println("connecting  to databsase ");
 	    conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
-	    String selectEmployeesQuery = "select employee_id, first_name, last_name, age from employee";
-	    Statement statement1 = conn.createStatement();
-	    ResultSet resultSet1 = statement1.executeQuery(selectEmployeesQuery);
-	    if (resultSet1 != null && resultSet1.next()) {
-		List<Employee> employees = new ArrayList<Employee>();
-		do {
-		    Employee employee = new Employee();
-		    employee.setId(resultSet1.getInt("employee_id"));
-		    employee.setFirstName(resultSet1.getString("first_name"));
-		    employee.setLastName(resultSet1.getString("last_name"));
-		    employee.setAge(resultSet1.getInt("age"));
+	    String query = "insert into department(DEPARTMENT_NAME, DEPARTMENT_EMAIL) values (?, ?)";
 
-		    employees.add(employee);
-		} while (resultSet1.next());
+	    preparedStatement = conn.prepareStatement(query);
+	    preparedStatement.setString(1, deptName);
+	    preparedStatement.setString(2, deptEmail);
+	    preparedStatement.executeUpdate();
 
-		request.setAttribute("employees", employees);
+	    String[] employeeIds = request.getParameterValues("employeeId");
+	    if (employeeIds != null) {
+		query = "update employee set department_id = LAST_INSERT_ID() where employee_id = ?";
+		for (String employeeId : employeeIds) {
+		    preparedStatement = conn.prepareStatement(query);
+		    preparedStatement.setString(1, employeeId);
+		    preparedStatement.executeUpdate();
+		}
 	    }
 
 	} catch (SQLException se) {
@@ -84,6 +97,7 @@ public class EmployeeAddServlet extends HttpServlet {
 	    e.printStackTrace();
 	    request.setAttribute("isError", "true");
 	} finally {
+	    // finally block used to close resource
 	    if (conn != null) {
 		try {
 		    conn.close();
@@ -93,18 +107,9 @@ public class EmployeeAddServlet extends HttpServlet {
 		}
 	    }
 	}
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/employee-add.jsp");
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/DepartmentAddServlet");
 	dispatcher.include(request, response);
 
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-	// TODO Auto-generated method stub
-	doGet(request, response);
     }
 
 }

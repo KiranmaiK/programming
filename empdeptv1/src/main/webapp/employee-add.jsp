@@ -1,4 +1,4 @@
-<%@page import="net.antra.training.assignments.model.Employee"%>
+<%@page import="projects.kiran.programming.myapp.model.Employee"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Statement"%>
 <%@page import=" java.sql.ResultSet"%>
