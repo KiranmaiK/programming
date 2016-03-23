@@ -18,17 +18,17 @@
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 
-	<bean id="employeeDao" class="net.antra.training.assignments.dao.EmployeeDaoImpl"/>
+	<bean id="employeeDao" class="projects.kiran.programming.myapp.dao.EmployeeDaoImpl"/>
 
-	<bean id="departmentDao" class="net.antra.training.assignments.dao.DepartmentDaoImpl"/>
+	<bean id="departmentDao" class="projects.kiran.programming.myapp.dao.DepartmentDaoImpl"/>
 
 	<bean id="employeeService"
-		class="net.antra.training.assignments.service.EmployeeServiceImpl">
+		class="projects.kiran.programming.myapp.service.EmployeeServiceImpl">
 		<property name="employeeDao" ref="employeeDao" />
 	</bean>
 
 	<bean id="departmentService"
-		class="net.antra.training.assignments.service.DepartmentServiceImpl">
+		class="projects.kiran.programming.myapp.service.DepartmentServiceImpl">
 		<property name="departmentDao" ref="departmentDao" />
 		<property name="employeeService" ref="employeeService" />
 	</bean>
