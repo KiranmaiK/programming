@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,29 +13,40 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import net.antra.training.assignments.entity.Department;
-import net.antra.training.assignments.service.DepartmentService;
+import projects.kiran.programming.myapp.entity.Department;
+import projects.kiran.programming.myapp.entity.Employee;
+import projects.kiran.programming.myapp.service.DepartmentService;
+import projects.kiran.programming.myapp.service.EmployeeService;
 
-/**
- * Servlet implementation class DepartmentServlet
- */
-@WebServlet("/DepartmentSaveServlet")
-public class DepartmentSaveServlet extends HttpServlet {
+@WebServlet("/DepartmentAddServlet")
+public class DepartmentAddServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public DepartmentSaveServlet() {
+    public DepartmentAddServlet() {
 	super();
 	// TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-	// TODO Auto-generated method stub
-	doPost(request, response);
+	try {
 
+	    ApplicationContext applicationContext = WebApplicationContextUtils
+	            .getWebApplicationContext(this.getServletContext());
+	    
+	    EmployeeService employeeService = (EmployeeService) applicationContext.getBean("employeeService");
+	    List<Employee> employees = employeeService.getEmployees();
+	    request.setAttribute("employees", employees);
+
+	    DepartmentService departmentService = (DepartmentService) applicationContext.getBean("departmentService");
+	    List<Department> departments = departmentService.getDepartments();
+	    request.setAttribute("departments", departments);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/department-add.jsp");
+	    dispatcher.include(request, response);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    request.setAttribute("isError", "true");
+	}
     }
 
     /**
@@ -43,28 +54,7 @@ public class DepartmentSaveServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-	try {
-	    String deptName = request.getParameter("departmentName");
-	    String deptEmail = request.getParameter("departmentEmail");
-	    String[] employeeIds = request.getParameterValues("employeeId");
-
-	    ApplicationContext applicationContext = WebApplicationContextUtils
-	            .getWebApplicationContext(this.getServletContext());
-
-	    DepartmentService departmentService = (DepartmentService) applicationContext.getBean("departmentService");
-	    departmentService.saveDepartment(deptName, deptEmail, employeeIds);
-
-	    List<Department> departments = departmentService.getDepartments();
-	    request.setAttribute("departments", departments);
-
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/DepartmentAddServlet");
-	    dispatcher.include(request, response);
-
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    request.setAttribute("isError", "true");
-	}
-
+	doGet(request, response);
     }
 
 }

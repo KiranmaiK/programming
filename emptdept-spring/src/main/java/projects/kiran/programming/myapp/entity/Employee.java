@@ -1,4 +1,4 @@
-package net.antra.training.assignments.entity;
+package projects.kiran.programming.myapp.entity;
 
 /**
  * Kiranmai Kovuru

@@ -1,9 +1,9 @@
-package net.antra.training.assignments.service;
+package projects.kiran.programming.myapp.service;
 
 import java.util.List;
 
-import net.antra.training.assignments.dao.DepartmentDao;
-import net.antra.training.assignments.entity.Department;
+import projects.kiran.programming.myapp.dao.DepartmentDao;
+import projects.kiran.programming.myapp.entity.Department;
 
 public interface DepartmentService {
 

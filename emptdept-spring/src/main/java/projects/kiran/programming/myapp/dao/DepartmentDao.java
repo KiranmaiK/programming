@@ -1,8 +1,8 @@
-package net.antra.training.assignments.dao;
+package projects.kiran.programming.myapp.dao;
 
 import java.util.List;
 
-import net.antra.training.assignments.entity.Department;
+import projects.kiran.programming.myapp.entity.Department;
 
 public interface DepartmentDao extends BaseDao {
 
