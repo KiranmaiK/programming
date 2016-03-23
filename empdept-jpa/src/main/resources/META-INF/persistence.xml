@@ -8,8 +8,8 @@
 
 	<persistence-unit name="net.antra.training.assignments">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>net.antra.training.assignments.entity.Department</class>
-		<class>net.antra.training.assignments.entity.Employee</class>
+		<class>projects.kiran.programming.myapp.entity.Department</class>
+		<class>projects.kiran.programming.myapp.entity.Employee</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/practice" />

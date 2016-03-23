@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.antra.training.assignments.entity.Department;
-import net.antra.training.assignments.entity.Employee;
+import projects.kiran.programming.myapp.entity.Department;
+import projects.kiran.programming.myapp.entity.Employee;
 
 /**
  * Servlet implementation class DepartmentServlet

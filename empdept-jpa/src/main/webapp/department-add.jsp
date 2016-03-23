@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@page import="net.antra.training.assignments.entity.Employee"%>
-<%@page import="net.antra.training.assignments.entity.Department"%>
+<%@page import="projects.kiran.programming.myapp.entity.Employee"%>
+<%@page import="projects.kiran.programming.myapp.entity.Department"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Statement"%>
