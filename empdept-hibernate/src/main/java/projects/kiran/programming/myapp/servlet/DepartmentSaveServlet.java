@@ -1,4 +1,4 @@
-package net.antra.training.assignments.servlet;
+package projects.kiran.programming.myapp.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import net.antra.training.assignments.model.Department;
-import net.antra.training.assignments.model.Employee;
+import projects.kiran.programming.myapp.model.Department;
+import projects.kiran.programming.myapp.model.Employee;
 
 /**
  * Servlet implementation class DepartmentServlet

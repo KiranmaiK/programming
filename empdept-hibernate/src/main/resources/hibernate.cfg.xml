@@ -34,8 +34,8 @@
 		-->
 
 		<!-- Names the annotated entity class -->
-		<mapping class="net.antra.training.assignments.model.Department" />
-		<mapping class="net.antra.training.assignments.model.Employee" />
+		<mapping class="projects.kiran.programming.myapp.model.Department" />
+		<mapping class="projects.kiran.programming.myapp.model.Employee" />
 		
 	</session-factory>
 
